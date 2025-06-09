@@ -8,6 +8,9 @@ on:
   # Also allow manual trigger
   workflow_dispatch:
 
+permissions:
+  contents: write
+  
 jobs:
   build:
     name: Build Windows Executable
@@ -62,7 +65,7 @@ jobs:
     # Create GitHub release with the executable
     - name: Create GitHub Release
       if: startsWith(github.ref, 'refs/tags/')
-      uses: softprops/action-gh-release@v2
+      uses: softprops/action-gh-release@v1
       with:
         files: windows-system-cleaner.exe
         generate_release_notes: true
